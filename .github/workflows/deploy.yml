@@ -10,9 +10,6 @@ on:
         default: 'dev'
         options: ['dev', 'test', 'prod']
 
-env:
-  targetEnv: ${{ github.event.inputs.targetEnv }}
-
 permissions:
   id-token: write
   contents: read
@@ -36,4 +33,4 @@ jobs:
         subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
         resourceGroupName: ${{ secrets.AZURE_RG }}
         template: ./src/InfrastructureAsCode/main.bicep
-        parameters: environment=$targetEnv
+        parameters: environment=${{ github.event.inputs.targetEnv }}
